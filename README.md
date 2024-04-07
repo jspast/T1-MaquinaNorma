@@ -16,3 +16,13 @@ Trabalho 1 - Programação em Máquina Norma
 
     Envie (via Moodle) um arquivo .ZIP contendo todos os programas desenvolvidos, junto com um arquivo de texto indicando os componentes do grupo. Somente um componente do grupo deverá fazer a submissão (pelo grupo inteiro).
 
+### ToDo
+
+- [ ] 1a
+- [ ] 1b
+- [ ] 1c
+- [ ] 1d
+- [ ] 2a
+- [ ] 2b
+- [ ] 2c
+- [ ] 3a
