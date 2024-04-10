@@ -18,11 +18,11 @@ Trabalho 1 - Programação em Máquina Norma
 
 ### ToDo
 
-- [ ] 1a
-- [ ] 1b
+- [ ] 1a (João)
+- [ ] 1b (João)
 - [ ] 1c
 - [ ] 1d
-- [ ] 2a
-- [ ] 2b
-- [ ] 2c
-- [ ] 3a
+- [ ] 2a (João)
+- [ ] 2b (Matheus)
+- [ ] 2c (Guilherme)
+- [ ] 3a (Dante)
