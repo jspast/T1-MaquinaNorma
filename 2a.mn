@@ -1,0 +1,141 @@
+// A:=0
+operation zerar(A){
+	1: if zero A then goto 0 else goto 2
+	2: do dec A goto 1
+}
+
+// A:=A+B (soma destrutiva)
+operation soma(A,B){
+	1: if zero B then goto 0 else goto 2
+	2: do dec B goto 3
+	3: do inc A goto 1
+}
+
+// A:=A+B usando C (soma conservativa)
+operation soma(A,B,C){
+	1: if zero B then goto 5 else goto 2
+	2: do dec B goto 3
+	3: do inc A goto 4
+	4: do inc C goto 1
+	5: if zero C then goto 0 else goto 6
+	6: do dec C goto 7
+	7: do inc B goto 5
+}
+
+// A:=B (atribuicao destrutiva)
+operation atribui(A,B){
+	1: do zerar(A) goto 2
+	2: do soma(A,B) goto 0
+}
+
+// A:=B usando C (atribuição conservativa)
+operation atribui(A,B,C){
+	1: do zerar(A) goto 2
+	2: do soma(A,B,C) goto 0
+}
+
+// A:=A*B (multiplicação conservativa)
+operation multiplica(A,B,C,D){
+	1: if zero B then goto 0 else goto 2
+	2: do atribui(C,A) goto 3
+	3: if zero C then goto 0 else goto 4
+	4: do soma(A,B,D) goto 5
+	5: do dec C goto 3
+}
+
+// A:=A*A
+operation quadrado(A,B,C,D){
+	1: do atribui(B,A,C) goto 2
+	2: do multiplica(A,B,C,D) goto 0
+}
+
+// A:=3*A
+operation vezes3(A,B,C,D){
+	1: do zerar(B) goto 2
+	2: do add B 3 goto 3
+	3: do multiplica(A,B,C,D) goto 0
+}
+
+// Teste de divisibilidade por 2
+test divBy2(A,B,C){
+	1: do atribui(B,A,C) goto 2
+	2: if zero B then goto true else goto 3
+	3: do dec B goto 4
+	4: if zero B then goto false else goto 5
+	5: do dec B goto 2
+}
+
+// Teste de divisibilidade por 3
+test divBy3(A,B,C){
+	1: do atribui(B,A,C) goto 2
+	2: if zero B then goto true else goto 3
+	3: do dec B goto 4
+	4: if zero B then goto false else goto 5
+	5: do dec B goto 6
+	6: if zero B then goto false else goto 7
+	7: do dec B goto 2
+}
+
+// A:=A/2
+operation div2(A,B){
+	1: do atribui(B,A) goto 2
+	2: if zero B then goto 0 else goto 3
+	3: do dec B goto 4
+	4: if zero B then goto 0 else goto 5
+	5: do dec B goto 6
+	6: do inc A goto 2
+}
+
+// A:=A/3
+operation div3(A,B){
+	1: do atribui(B,A) goto 2
+	2: if zero B then goto 0 else goto 3
+	3: do dec B goto 4
+	4: if zero B then goto 0 else goto 5
+	5: do dec B goto 6
+	6: if zero B then goto 0 else goto 7
+	7: do dec B goto 8
+	8: do inc A goto 2
+}
+
+// A recebe o número de divisões exatas de B por 2
+operation fst(A,B,C,D,E){
+	1: do zerar(A) goto 2
+	2: do atribui(C,B,D) goto 3
+	3: if zero C then goto 0 else goto 4
+	4: if divBy2(C,D,E) then goto 5 else goto 7
+	5: do div2(C,D) goto 6
+	6: do inc A goto 3
+	7: do zerar(C) goto 0
+}
+
+// A recebe o número de divisões exatas de B por 3
+operation snd(A,B,C,D,E){
+	1: do zerar(A) goto 2
+	2: do atribui(C,B,D) goto 3
+	3: if zero C then goto 0 else goto 4
+	4: if divBy3(C,D,E) then goto 5 else goto 7
+	5: do div3(C,D) goto 6
+	6: do inc A goto 3
+	7: do zerar(C) goto 0
+}
+
+// X := X^2 + 3*Y
+operation pol(X,Y,B,C,D){
+	1: do quadrado(X,B,C,D) goto 2
+	2: do vezes3(Y,B,C,D) goto 3
+	3: do soma(X,Y) goto 0
+}
+
+// Com base na codificação
+// cod(a,b) = 2^a × 3^b
+//
+// E que cod(a,b) = X
+//
+// Y := a^2 + 3*b
+main{
+	1: do fst(A,X,C,D,E) goto 2
+	2: do snd(B,X,C,D,E) goto 3
+	3: do pol(A,B,C,D,E) goto 4
+	4: do atribui(Y,A) goto 0
+}
