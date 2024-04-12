@@ -22,7 +22,7 @@ https://www.inf.ufrgs.br/~rma/simuladores/norma.html
 ### ToDo
 
 - [x] 1a (João)
-- [ ] 1b (João)
+- [x] 1b (João)
 - [ ] 1c (Matheus)
 - [ ] 1d (Guilherme)
 - [x] 2a (João)
