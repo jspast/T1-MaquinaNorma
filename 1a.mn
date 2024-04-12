@@ -44,9 +44,10 @@ operation multiplica(A,B,C,D) {
 }
 
 // A:=A*A
-operation quadrado(A,B,C,D) {
+operation quadrado(A,B,C,D){
 	1: do atribui(B,A,C) goto 2
-	2: do multiplica(A,B,C,D) goto 0
+	2: do multiplica(A,B,C,D) goto 3
+	3: do zerar(B) goto 0
 }
 
 // A:=3*A
