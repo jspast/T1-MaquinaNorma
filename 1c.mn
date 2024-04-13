@@ -1,0 +1,57 @@
+// A := 0
+operation clear(A){
+
+    1: if zero A then goto 0 else goto 2
+    2: do dec A goto 1
+}
+
+
+// A := B (usando C, não-destrutiva)
+operation copy(A, B, C){
+
+    1: do clear(A) goto 2
+    2: do clear(C) goto 3
+    3: if zero B then goto 7 else goto 4 
+    4: do dec B goto 5
+    5: do inc A goto 6
+    6: do inc C goto 3
+    7: if zero C then goto 0 else goto 8
+    8: do dec C goto 9
+    9: do inc B goto 7
+}
+
+
+// Testa se um número é múltiplo de 2 (utilizando B)
+test ismul2(A, B){
+
+    1: do copy(B, A, C) goto 2
+    2: if zero B then goto true else goto 3
+    3: do dec B goto 4
+    4: if zero B then goto false else goto 5
+    5: do dec B goto 2
+}
+
+
+// Testa se um número é múltiplo de 3 (utilizando B)
+test ismul3(A, B){
+
+    1: do copy(B, A, C) goto 2
+    2: if zero B then goto true else goto 3
+    3: do dec B goto 4
+    4: do dec B goto 5
+    5: if zero B then goto false else goto 6
+    6: do dec B goto 2
+}
+
+
+// Y := 1 se X é multiplo de 2
+// Y := 2 se x não é múltiplo de 2 mas é múltiplo de 3
+// Y := 0 caso contrário
+main{
+   
+    1: do clear(Y) goto 2
+    2: if ismul2(X, B) then goto 5 else goto 3
+    3: if ismul3(X, B) then goto 4 else goto 0
+    4: do inc Y goto 5
+    5: do inc Y goto 0
+}
