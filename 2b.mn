@@ -1,0 +1,196 @@
+// A := 0
+operation clear(A){
+
+    1: if zero A then goto 0 else goto 2
+    2: do dec A goto 1
+}
+
+
+// A := B (usando C, não-destrutiva)
+operation copy(A, B, C){
+
+    1: do clear(A) goto 2
+    2: do clear(C) goto 3
+    3: if zero B then goto 7 else goto 4 
+    4: do dec B goto 5
+    5: do inc A goto 6
+    6: do inc C goto 3
+    7: if zero C then goto 0 else goto 8
+    8: do dec C goto 9
+    9: do inc B goto 7
+}
+
+
+// A := A div 2 (divisão inteira arredondando para baixo, utilizando B e E)
+operation div2(A, B, E){
+
+    1: do copy(B, A, E) goto 2
+    2: do clear(A) goto 3
+    3: if zero B then goto 0 else goto 4
+    4: do dec B goto 5
+    5: if zero B then goto 0 else goto 6
+    6: do dec B goto 7
+    7: do inc A goto 3
+}
+
+
+// A := A div 3 (divisão inteira arredondando para baixo, utilizando B e E)
+operation div3(A, B, E){
+
+    1: do copy(B, A, E) goto 2
+    2: do clear(A) goto 3
+    3: if zero B then goto 0 else goto 4
+    4: do dec B goto 5
+    5: do dec B goto 6
+    6: if zero B then goto 0 else goto 7
+    7: do dec B goto 8 
+    8: do inc A goto 3
+}
+
+
+// Testa se um número é múltiplo de 2 (B e E são registradores auxiliares)
+test isMul2(A, B, E){
+
+    1: do copy(B, A, E) goto 2
+    2: if zero B then goto true else goto 3
+    3: do dec B goto 4
+    4: if zero B then goto false else goto 5
+    5: do dec B goto 2
+}
+
+
+// Testa se um número é múltiplo de 3 (B e E são registradores auxiliares)
+test isMul3(A, B, E){
+
+    1: do copy(B, A, E) goto 2
+    2: if zero B then goto true else goto 3
+    3: do dec B goto 4
+    4: do dec B goto 5
+    5: if zero B then goto false else goto 6
+    6: do dec B goto 2
+}
+
+
+// Decodifica um natural para um par de naturais 
+// A é o natural, B e C serão o par de naturais, 
+// D, E e F são registradores auxiliares
+operation decode(A, B, C, D, E, F){
+
+    1: do copy(D, A, E) goto 2
+    2: do clear(B) goto 3
+    3: do clear(C) goto 4
+    4: if isMul2(D, E, F) then goto 5 else goto 7
+    5: do div2(D, E, F) goto 6
+    6: do inc B goto 4
+    7: if isMul3(D, E, F) then goto 8 else goto 0
+    8: do div3(D, E, F) goto 9
+    9: do inc C goto 7
+}
+
+
+// Testa se A < B (M, N e E são registradores auxiliares)
+test isSmaller(A, B, M, N, E){
+
+    1: do copy(M, A, E) goto 2
+    2: do copy(N, B, E) goto 3
+    3: if zero N then goto false else goto 4
+    4: if zero M then goto true else goto 5
+    5: do dec N goto 6
+    6: do dec M goto 3
+}
+
+
+// Divisão do B pelo C, quociente fica no Q e resto no R (E e F são registradores auxiliares)
+operation divide(B, C, Q, R, E, F){
+
+    1: do copy(R, B, E) goto 2
+    2: if isSmaller(R, C, B, F, E) then goto 0 else goto 3
+    3: do copy(F, C, E) goto 4
+    4: do dec F goto 5
+    5: do dec R goto 6
+    6: if zero F then goto 7 else goto 4
+    7: do inc Q goto 2
+}
+
+
+// A := A x 2 (utilizando E) 
+operation mul2(A, B, E){
+
+    1: do copy(B, A, E) goto 2
+    2: do clear(A) goto 3
+    3: if zero B then goto 0 else goto 4
+    4: do dec B goto 5
+    5: do inc A goto 6
+    6: do inc A goto 3
+}
+
+
+// A := A x 3 (utilizando E) 
+operation mul3(A, B, E){
+
+    1: do copy(B, A, E) goto 2
+    2: do clear(A) goto 3
+    3: if zero B then goto 0 else goto 4
+    4: do dec B goto 5
+    5: do inc A goto 6
+    6: do inc A goto 7
+    7: do inc A goto 3
+}
+
+
+// A := 2 elevado na A (utilizando B, E e F como registradores auxiliares) 
+operation exp2(A, B, E, F){
+
+    1: do copy(B, A, E) goto 2
+    2: do clear(A) goto 3
+    3: do inc A goto 4
+    4: if zero B then goto 0 else goto 5
+    5: do dec B goto 6
+    6: do mul2(A, E, F) goto 4
+}
+
+
+// A := 3 elevado na A (utilizando B, E e F como registradores auxiliares) 
+operation exp3(A, B, E, F){
+
+    1: do copy(B, A, E) goto 2
+    2: do clear(A) goto 3
+    3: do inc A goto 4
+    4: if zero B then goto 0 else goto 5
+    5: do dec B goto 6
+    6: do mul3(A, E, F) goto 4
+}
+
+
+// Codifica um par de naturais para um natural
+// Q e R são os naturais, Y o natural codificado, 
+// E, F e G são registradores auxiliares
+operation encode(Q, R, E, F, G, Y){
+
+    1: do exp2(Q, E, F, G) goto 2
+    2: do exp3(R, E, F, G) goto 3
+    3: if zero Q then goto 0 else goto 4
+    4: do dec Q goto 5
+    5: do copy(F, R, E) goto 6
+    6: if zero F then goto 3 else goto 7
+    7: do dec F goto 8
+    8: do inc Y goto 6
+}
+
+
+// Codificação: pair(m, n) = 2^m x 3^n
+//
+// Sabendo que pair(m, n) = X
+// E que div(m, n) = pair(q, r), divisão de m por n
+// Onde q = quociente da divisão e r = resto da divisão
+//
+// Y := pair(q, r),
+// ou Y := pair(0, 0) caso q = 0 ou r = 0
+main{
+    1: do decode(X, B, C, D, E, F) goto 2
+    2: if zero B then goto 6 else goto 3
+    3: if zero C then goto 6 else goto 4
+    4: do divide(B, C, Q, R, E, F) goto 5
+    5: do encode(Q, R, E, F, G, Y) goto 0
+    6: do inc Y goto 0
+}
