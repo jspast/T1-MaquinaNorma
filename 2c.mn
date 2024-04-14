@@ -1,0 +1,107 @@
+// A:=0
+operation zerar(A){
+	1: if zero A then goto 0 else goto 2
+	2: do dec A goto 1
+}
+
+// A:=A+B (soma destrutiva)
+operation soma(A,B){
+	1: if zero B then goto 0 else goto 2
+	2: do dec B goto 3
+	3: do inc A goto 1
+}
+
+// A:=A+B usando C (soma conservativa)
+operation soma(A,B,C){
+	1: if zero B then goto 5 else goto 2
+	2: do dec B goto 3
+	3: do inc A goto 4
+	4: do inc C goto 1
+	5: if zero C then goto 0 else goto 6
+	6: do dec C goto 7
+	7: do inc B goto 5
+}
+
+// A:=B (atribuicao destrutiva)
+operation atribui(A,B){
+	1: do zerar(A) goto 2
+	2: do soma(A,B) goto 0
+}
+
+// A:=B usando C (atribuição conservativa)
+operation atribui(A,B,C){
+	1: do zerar(A) goto 2
+	2: do soma(A,B,C) goto 0
+}
+
+// A:=A*B (multiplicação conservativa)
+operation multiplica(A,B,C,D){
+	1: if zero B then goto 0 else goto 2
+	2: do atribui(C,A) goto 3
+	3: if zero C then goto 0 else goto 4
+	4: do soma(A,B,D) goto 5
+	5: do dec C goto 3
+}
+
+// A:=A/2
+operation div2(A,B){
+	1: do atribui(B,A) goto 2
+	2: if zero B then goto 0 else goto 3
+	3: do dec B goto 4
+	4: if zero B then goto 0 else goto 5
+	5: do dec B goto 6
+	6: do inc A goto 2
+}
+
+// A := A x 2 (utilizando E) 
+operation mul2(A,B,E){
+	1: do atribui(B, A, E) goto 2
+	2: do zerar(A) goto 3
+	3: if zero B then goto 0 else goto 4
+	4: do dec B goto 5
+	5: do inc A goto 6
+	6: do inc A goto 3
+}
+
+// A := A x 3 (utilizando E) 
+operation mul3(A,B,E){
+	1: do atribui(B, A, E) goto 2
+	2: do zerar(A) goto 3
+	3: if zero B then goto 0 else goto 4
+	4: do dec B goto 5
+	5: do inc A goto 6
+	6: do inc A goto 7
+	7: do inc A goto 3
+}
+
+// A := 2 elevado na A (utilizando B, E e F como registradores auxiliares) 
+operation exp2(A,B,E,F){
+	1: do atribui(B,A,E) goto 2
+	2: do zerar(A) goto 3
+	3: do inc A goto 4
+	4: if zero B then goto 0 else goto 5
+	5: do dec B goto 6
+	6: do mul2(A, E, F) goto 4
+}
+
+// A := 3 elevado na A (utilizando B, E e F como registradores auxiliares) 
+operation exp3(A,B,E,F){
+    	1: do atribui(B,A,E) goto 2
+	2: do zerar(A) goto 3
+	3: do inc A goto 4
+	4: if zero B then goto 0 else goto 5
+	5: do dec B goto 6
+  	6: do mul3(A, E, F) goto 4
+}
+
+// Y := 2^(x-1) * 3^(x/2)
+main{
+    	1: do atribui(A,X,B) goto 2
+	2: do atribui(B,X,C) goto 3
+	3: do dec A goto 4
+	4: do div2(B,C) goto 5
+	5: do exp2(A,C,D,E) goto 6
+	6: do exp3(B,C,D,E) goto 7
+	7: do multiplica(A,B,C,D) goto 8
+	8: do atribui(Y,A) goto 0
+}
