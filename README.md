@@ -27,5 +27,5 @@ https://www.inf.ufrgs.br/~rma/simuladores/norma.html
 - [x] 1d (Guilherme)
 - [x] 2a (João)
 - [x] 2b (Matheus)
-- [ ] 2c (Guilherme)
+- [x] 2c (Guilherme)
 - [ ] 3a (Dante)
