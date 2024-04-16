@@ -1,0 +1,40 @@
+main {
+//Linhas 1 a 7 settam os 2 valores iniciais
+	1: do inc A goto 2
+	2: do inc A goto 3
+	3: do inc B goto 4
+	4: do inc B goto 5
+	5: do inc B goto 6
+	6: do inc B goto 7
+	7: do inc B goto 8
+	8: do dec X goto 9
+	9: do inc C goto 10
+	10: do inc C goto 11
+	11: do inc C goto 12
+	12: do inc D goto 13
+	13: do dec B goto 14
+//Loop para t-1, que salva t-1 em D
+//para usar ele como t-2 depois
+	14: if zero B then goto 15 else goto 9
+	15: do dec C goto 16
+	16: do dec C goto 17
+	17: do dec A goto 18
+//Loop para t-2
+	18: if zero A then goto 19 else goto 15
+	19: do inc A goto 20
+	20: do dec D goto 21
+//Passa t-2 para t-1 e o
+//resultado da soma para t-1
+	21: if zero D then goto 22 else goto 19
+	22: do inc B goto 23
+	23: do dec C goto 24
+	24: if zero C then goto 25 else goto 22
+//Decrementa X, se for 0 acabou
+//e passa o valor de t-1 para Y,
+//Senão, volta ao loop indo para linha 9
+	25: do dec X goto 26
+	26: if zero X then goto 27 else goto 9
+	27: do inc Y goto 28
+	28: do dec B goto 29
+	29: if zero B then goto 30 else goto 27	
+}
