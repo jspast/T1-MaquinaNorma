@@ -53,10 +53,13 @@ operation multiplica(A,B,C,D) {
 
 // Y := X!!
 main{
-	1: do atribui(Y,X,A) goto 2
-	2: do dec X goto 3
-	3: do dec X goto 4
-	4: if zero X then goto 0 else goto 5
-	5: if igual1(X) then goto 0 else goto 6
-	6: do multiplica(Y,X,A,B) goto 2
+	1: if zero X then goto 2 else goto 3
+	2: do inc Y goto 0
+	3: if igual1(X) then goto 2 else goto 4
+	4: do atribui(Y,X,A) goto 5
+	5: do dec X goto 6
+	6: do dec X goto 7
+	7: if zero X then goto 0 else goto 8
+	8: if igual1(X) then goto 0 else goto 9
+	9: do multiplica(Y,X,A,B) goto 5
 }
