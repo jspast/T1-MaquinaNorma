@@ -1,0 +1,48 @@
+let
+
+	id = \x . x;
+	auto = \a. a a;
+
+	true = \a. \b. a;
+	false = \a. \b. b;
+
+	if = \a. b c a b c;
+
+	not = \b. if b false true;
+
+	and = \b1. \b2. if b1 b2 false;
+
+	or = \b1. \b2. if b1 true b2;
+
+	zero = \f. \x. x;
+
+	succ = \n. (\A. \B. A (n A B));
+
+	soma = \n1. \n2. n1 succ n2;
+
+	soma2 = \n1. \n2. (\A. \B. n1 A (n2 A B));
+
+	mult = \n1. \n2. n1 (\x. soma2 x n2) 0;
+
+	mult2 = \n1. \n2. \A. \B. n1 (n2 A) B;
+
+	exp = \n1. \n2. n2 n1;
+
+	isZero = \n. n (\x. false) true;
+	ispos = \n. not (isZero n);
+
+	pair = \A B. \c. c A B;
+	fst = \p. p true;
+	snd = \p. p false;
+
+	swap = \p. pair (snd p) (fst p);
+
+	sI = \p. pair (snd p) (succ (snd p));
+
+	pred = \n. fst (n sI (pair 0 0));
+
+	sub = \n1. \n2. n2 pred n1;
+	menor = \n1. \n2. ispos (sub n2 n1);
+
+in
+
