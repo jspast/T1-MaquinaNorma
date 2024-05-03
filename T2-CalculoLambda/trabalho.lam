@@ -1,12 +1,14 @@
 let
 
+	-- Definições --
+
 	id = \x . x;
 	auto = \a. a a;
 
 	true = \a. \b. a;
 	false = \a. \b. b;
 
-	if = \a. b c a b c;
+	if = \a. \b. \c. a b c;
 	not = \b. if b false true;
 	and = \b1. \b2. if b1 b2 false;
 	or = \b1. \b2. if b1 true b2;
@@ -36,8 +38,19 @@ let
 	sI = \p. pair (snd p) (succ (snd p));
 	pred = \n. fst (n sI (pair 0 0));
 	sub = \n1. \n2. n2 pred n1;
-	
+
 	menor = \n1. \n2. ispos (sub n2 n1);
+
+	Y = \f. (\x. f (x x)) (\x. f (x x));
+
+	div = Y (\R. \a. \b. if (iszero b) 0 (if (menor a b) 0 (succ (R (sub a b) b))));
+	mod = Y (\R. \a. \b. if (iszero b) 0 (if (menor a b) a (R (sub a b) b)));
+
+	-- Exercícios --
+
+	-- 1c --
+
+	multTres = \x. if (iszero x) false (iszero (mod x 3));
 
 in
 
