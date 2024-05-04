@@ -52,5 +52,9 @@ let
 
 	multTres = \x. if (iszero x) false (iszero (mod x 3));
 
+	-- 1f --
+
+	geraLista = Y (\R. \x. if (iszero x) empty (cons x (R (pred x))));
+
 in
 
