@@ -28,5 +28,5 @@ http://www.inf.ufrgs.br/~rma/simuladores/lambda.html
 - [x] 1d (Guilherme)
 - [ ] 1e
 - [x] 1f (João)
-- [ ] 1g
+- [x] 1g (Guilherme)
 - [ ] 1h
