@@ -1,3 +1,4 @@
+
 let
 
 	-- Definições --
@@ -52,9 +53,12 @@ let
 
 	multTres = \x. if (iszero x) false (iszero (mod x 3));
 
+        -- 1d --
+
+        multFrac = \x y. (pair (mult (fst x) (fst y)) (mult (snd x) (snd y)));
+
 	-- 1f --
 
 	geraLista = Y (\R. \x. if (iszero x) empty (cons x (R (pred x))));
 
 in
-
