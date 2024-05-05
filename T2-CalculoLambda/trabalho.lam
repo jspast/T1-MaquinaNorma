@@ -61,4 +61,11 @@ let
 
 	geraLista = Y (\R. \x. if (iszero x) empty (cons x (R (pred x))));
 
+        -- 1g --
+
+        multListaAux = Y (\M x. if (isempty x) 1 (mult (head x) (M (tail x))));
+
+        multLista = \x. if (isempty x) 0 (multListaAux x);
+
+
 in
