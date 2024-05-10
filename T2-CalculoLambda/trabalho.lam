@@ -49,6 +49,10 @@ let
 
 	-- Exercícios --
 
+	-- 1b --
+
+	pol = \x y. soma2 (exp x 2) (mult y 3);
+
 	-- 1c --
 
 	multTres = \x. if (iszero x) false (iszero (mod x 3));
@@ -56,6 +60,10 @@ let
         -- 1d --
 
         multFrac = \x y. (pair (mult (fst x) (fst y)) (mult (snd x) (snd y)));
+
+	-- 1e --
+
+	somaFrac = \x y. pair (soma2 (mult (fst x) (snd y)) (mult (snd x) (fst y))) (mult (snd x) (snd y));
 
 	-- 1f --
 
