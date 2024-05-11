@@ -49,6 +49,10 @@ let
 
 	-- Exercícios --
 
+	-- 1a --
+
+	igual = \x y. if iszero (sub x y) (if iszero (sub y x) true false) false;
+
 	-- 1b --
 
 	pol = \x y. soma2 (exp x 2) (mult y 3);
@@ -74,6 +78,13 @@ let
         multListaAux = Y (\M x. if (isempty x) 1 (mult (head x) (M (tail x))));
 
         multLista = \x. if (isempty x) 0 (multListaAux x);
+
+	-- 1h --
+
+	seqAux = Y (\R x y a. if (iszero a) y (R y (sub (mult 3 y) (mult 2 x)) (pred a)));
+
+	seq = \x. if (iszero x) 2 (if (iszero (pred x)) 5 (seqAux 2 5 (pred x)));
+
 
 
 in
