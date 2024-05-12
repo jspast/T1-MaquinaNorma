@@ -1,4 +1,3 @@
-
 let
 
 	-- Definições --
@@ -16,10 +15,8 @@ let
 
 	zero = \f. \x. x;
 	succ = \n. (\A. \B. A (n A B));
-	soma = \n1. \n2. n1 succ n2;
-	soma2 = \n1. \n2. (\A. \B. n1 A (n2 A B));
-	mult = \n1. \n2. n1 (\x. soma2 x n2) 0;
-	mult2 = \n1. \n2. \A. \B. n1 (n2 A) B;
+	soma = \n1. \n2. (\A. \B. n1 A (n2 A B));
+	mult = \n1. \n2. \A. \B. n1 (n2 A) B;
 	exp = \n1. \n2. n2 n1;
 
 	iszero = \n. n (\x. false) true;
@@ -55,36 +52,34 @@ let
 
 	-- 1b --
 
-	pol = \x y. soma2 (exp x 2) (mult y 3);
+	pol = \x y. soma (exp x 2) (mult y 3);
 
 	-- 1c --
 
 	multTres = \x. if (iszero x) false (iszero (mod x 3));
 
-        -- 1d --
+	-- 1d --
 
-        multFrac = \x y. (pair (mult (fst x) (fst y)) (mult (snd x) (snd y)));
+	multFrac = \x y. (pair (mult (fst x) (fst y)) (mult (snd x) (snd y)));
 
 	-- 1e --
 
-	somaFrac = \x y. pair (soma2 (mult (fst x) (snd y)) (mult (snd x) (fst y))) (mult (snd x) (snd y));
+	somaFrac = \x y. pair (soma (mult (fst x) (snd y)) (mult (snd x) (fst y))) (mult (snd x) (snd y));
 
 	-- 1f --
 
 	geraLista = Y (\R. \x. if (iszero x) empty (cons x (R (pred x))));
 
-        -- 1g --
+	-- 1g --
 
-        multListaAux = Y (\M x. if (isempty x) 1 (mult (head x) (M (tail x))));
+	multListaAux = Y (\M x. if (isempty x) 1 (mult (head x) (M (tail x))));
 
-        multLista = \x. if (isempty x) 0 (multListaAux x);
+	multLista = \x. if (isempty x) 0 (multListaAux x);
 
 	-- 1h --
 
 	seqAux = Y (\R x y a. if (iszero a) y (R y (sub (mult 3 y) (mult 2 x)) (pred a)));
 
 	seq = \x. if (iszero x) 2 (if (iszero (pred x)) 5 (seqAux 2 5 (pred x)));
-
-
 
 in
