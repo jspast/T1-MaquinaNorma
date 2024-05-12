@@ -22,11 +22,11 @@ http://www.inf.ufrgs.br/~rma/simuladores/lambda.html
 
 ### ToDo
 
-- [ ] 1a
+- [x] 1a (Dante)
 - [x] 1b (Matheus)
 - [x] 1c (João)
 - [x] 1d (Guilherme)
 - [x] 1e (Matheus)
 - [x] 1f (João)
 - [x] 1g (Guilherme)
-- [ ] 1h
+- [x] 1h (Dante)
