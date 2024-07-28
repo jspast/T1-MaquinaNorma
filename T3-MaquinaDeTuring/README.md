@@ -37,6 +37,6 @@ http://www.inf.ufrgs.br/~rma/simuladores/turing.html
 - [X] 2a (Guilherme)
 - [ ] 3a
 - [ ] 4a
-- [ ] 4b (Guilherme)
+- [X] 4b (Guilherme)
 - [ ] 4c
 - [ ] 4d
