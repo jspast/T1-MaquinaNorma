@@ -35,8 +35,8 @@ http://www.inf.ufrgs.br/~rma/simuladores/turing.html
 - [ ] 1a
 - [ ] 1b (Matheus)
 - [X] 2a (Guilherme)
-- [ ] 3a (João)
-- [ ] 4a (João)
+- [x] 3a (João)
+- [x] 4a (João)
 - [X] 4b (Guilherme)
 - [ ] 4c (Matheus)
 - [ ] 4d
