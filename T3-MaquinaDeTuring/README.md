@@ -32,11 +32,11 @@ http://www.inf.ufrgs.br/~rma/simuladores/turing.html
 
 ### ToDo
 
-- [ ] 1a
+- [X] 1a (Dante)
 - [X] 1b (Matheus)
 - [X] 2a (Guilherme)
 - [x] 3a (João)
 - [x] 4a (João)
 - [X] 4b (Guilherme)
 - [X] 4c (Matheus)
-- [ ] 4d
+- [X] 4d (Dante)
