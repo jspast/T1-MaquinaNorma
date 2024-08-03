@@ -25,5 +25,5 @@ Adicionar mais 2 B's usando o mesmo princípio;
 Converter B's em a's;
 Transferir c's para o final da fita, triplicando-os e deixando a's no lugar de c's;
 Transferir A's para o final da fita, duplicando-os e deixando b's no lugar de A's;
-Converter A's em b's;
+Converter c's e A's em b's;
 Finalizar execução quando não houver mais c's e A's na fita.
